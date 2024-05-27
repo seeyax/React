@@ -15,6 +15,7 @@ class Count extends React.Component {
   render() {
     let { num } = this.state
     return <>
+    <h2 style={{color: 'red', fontSize: '20px'}}>我在学习React</h2>
       <span>{num}</span>
       <br />
       <button onClick={() => {
