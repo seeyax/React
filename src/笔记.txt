@@ -88,6 +88,25 @@ root.render(
 
   第二步:把构建的virtualDOM渲染为真实的DOM
     真实DOM：浏览器页面中，最后渲染出来，让用户看见的DOM元素
+    基于ReactDOM中的render方法处理的
+      v16：
+        ReactDOM.render(
+          <>...</>
+          document.getElementById('root')
+        )
+      v18:
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(
+          <>...</>
+        )
   补充说明：第一次渲染页面是直接从virtualDOM->真实DOM；但是后期视图更新的时候，需要经过一个DOM-DIFF的对比，计算出补丁包PATCH（两次视图差异
   的部分），把PATCH补丁包进行渲染
+
+ 
+
+
+
+
+
+
 
