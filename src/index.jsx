@@ -4,31 +4,42 @@ import ReactDOM from 'react-dom/client';
 import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/stable'
+import { createElement } from './jsxHandle';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-class Count extends React.Component {
-  state = {
-    num: 0
-  }
-  render() {
-    let { num } = this.state
-    return <>
-    <h2 style={{color: 'red', fontSize: '20px'}}>我在学习React</h2>
-      <span>{num}</span>
-      <br />
-      <button onClick={() => {
-        num++
-        this.setState({
-          num
-        })
-      }}>累加</button>
-      <p>vsd</p>
-    </>
-
-  }
+let styObj = {
+  color:'red',
+  fontSize: '16px'
 }
+
+let x = 10;
+let y = 20;
+
 root.render(
-  <Count></Count>
-);
+  <div>
+    <h2 className="title" style={styObj}>珠峰培训</h2>
+    <div className="box">
+      <span>{x}</span>
+      <span>{y}</span>
+    </div>
+  </div>
+)
+console.log(
+  createElement(
+    React.Fragment,
+    null,
+    createElement(
+      'h2',
+      {className: 'title', style: styObj},
+      'u73E0...'
+    ),
+    createElement(
+      'div',
+      { className: 'box'},
+      createElement('span',null,x),
+      createElement('span',null,y)
+    )
+  )
+)

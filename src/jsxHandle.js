@@ -16,7 +16,7 @@
 const each = function (obj, callback) {
   if (obj === null || typeof obj !== "object") throw new TypeError('obj is not a object')
   if (typeof callback !== 'function') throw new TypeError('callback is not a function')
-  let keys = Reflect.ownkeys(obj)
+  let keys = Reflect.ownKeys(obj)
   keys.forEach(key => {
     let value = obj[key]
     // 每一次迭代，都把回调函数执行
@@ -77,10 +77,51 @@ export function createElement(ele, props, ...children) {
  *  + 获取：getAttribute
  *  + 删除：removeAttribute
  *  二者不能混淆  排除内置属性的特殊性
- * @param {*} virtualDOM 
+ * @param {*} virtualDOM a
  * @param {*} container 
  */
+/**
+ * const root = ReactDOM.createRoot(document.getElementById('root'));
 
+let styObj = {
+  color:'red',
+  fontSize: '16px'
+}
+
+let x = 10;
+let y = 20;
+
+root.render(
+  <div>
+    <h2 className="title" style={styObj}>珠峰培训</h2>
+    <div className="box">
+      <span>{x}</span>
+      <span>{y}</span>
+    </div>
+  </div>
+)
+console.log(
+  createElement(
+    React.Fragment,
+    null,
+    createElement(
+      'h2',
+      {className: 'title', style: styObj},
+      'u73E0...'
+    ),
+    createElement(
+      'div',
+      { className: 'box'},
+      createElement('span',null,x),
+      createElement('span',null,y)
+    )
+  )
+)
+ * 
+ * @param {
+ * } virtualDOM 
+ * @param {*} container 
+ */
 
 // render：把虚拟DOM变为真实DOM
 export function render(virtualDOM, container) {
@@ -104,7 +145,17 @@ export function render(virtualDOM, container) {
       }
       // 子节点的处理,value 存储的是children对象
       if (key === 'children') {
-
+        let children = value
+        if (!Array.isArray(children)) children = [children]
+        children.forEach(child => {
+          // 子节点是文本节点：直接插入即可
+          if (/^(string|number)$/.test(typeof child)) {
+            ele.appendChild(document.createTextNode(child))
+          }
+          // 子节点又是一个virtualDOM：递归处理
+          render(child, ele)
+        })
+        return
       }
       ele.setAttribute(key, value)
     })
