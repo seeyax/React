@@ -102,6 +102,26 @@ root.render(
   补充说明：第一次渲染页面是直接从virtualDOM->真实DOM；但是后期视图更新的时候，需要经过一个DOM-DIFF的对比，计算出补丁包PATCH（两次视图差异
   的部分），把PATCH补丁包进行渲染
 
+  // React组件化开发
+    @1 函数组件
+      +创建：在src根目录中，创建一个jsx的文件,就是要创建一个组件；我们在此文件中，创建一个函数，让函数返回JSX视图[或者JSX元素、virtualDOM虚拟对象]；
+        这就是创建了一个函数组件
+      +导入：基于ES6Module规范，导入创建的组件[可以忽略.jsx后缀名]，然后像写标签一样调用这个组件即可
+      +调用组件的时候，我们可以给调用的组件设置（传递）各种各样的属性
+       <DemoOne title="dhsj" x={10} data={[10,20]} className="box" style={{fontSize:'16px'}}></DemoOne>
+        #1如果设置的属性不是字符串形式，需要基于“{}”进行嵌套
+        #2调用组件的时候，我们可以把一些数据/信息基于属性props的方式，传递给组件
+      +渲染机制：
+      #1 基于babel-preset-react-app把调用的组件转换为createElement格式
+      #2 把createElement方法执行，创建出一个virtualDOM对象
+      #3 基于root.render把virtualDOM变为真实的DOM，type值不再是一个字符串，而是一个函数
+        +把函数执行->DemoOne()
+        +把virtualDOM中的props，作为实参传递给函数->DemoOne(props)
+        +接收函数执行的返回结果[也就是当前组件的virtualDOM对象]
+        +最后基于render把组件返回的虚拟DOM变为真实DOM，插入到#root容器中
+    @2 类组件
+    @3 Hooks组件：在函数组件中使用React Hooks函数
+
  
 
 
