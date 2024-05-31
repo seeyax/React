@@ -12,6 +12,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div>
     珠峰培训
-    <DemoOne title="dhsj" x={10} data={[10,20]} className="box" style={{fontSize:'16px'}}></DemoOne>
+    <DemoOne title="react" x={10} className='box' style={{fontSize:'22px'}}></DemoOne>
+    <DemoOne title="哈哈哈哈哈哈" className='box' style={{fontSize:'22px'}}></DemoOne>
   </div>
 )
+
