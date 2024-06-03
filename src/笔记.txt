@@ -128,13 +128,13 @@ root.render(
         #1如果设置的属性不是字符串形式，需要基于“{}”进行嵌套
         #2调用组件的时候，我们可以把一些数据/信息基于属性props的方式，传递给组件
       +渲染机制：
-      #1 基于babel-preset-react-app把调用的组件转换为createElement格式
-      #2 把createElement方法执行，创建出一个virtualDOM对象
-      #3 基于root.render把virtualDOM变为真实的DOM，type值不再是一个字符串，而是一个函数
-        +把函数执行->DemoOne()
-        +把virtualDOM中的props，作为实参传递给函数->DemoOne(props)
-        +接收函数执行的返回结果[也就是当前组件的virtualDOM对象]
-        +最后基于render把组件返回的虚拟DOM变为真实DOM，插入到#root容器中
+        #1 基于babel-preset-react-app把调用的组件转换为createElement格式
+        #2 把createElement方法执行，创建出一个virtualDOM对象
+        #3 基于root.render把virtualDOM变为真实的DOM，type值不再是一个字符串，而是一个函数
+          +把函数执行->DemoOne()
+          +把virtualDOM中的props，作为实参传递给函数->DemoOne(props)
+          +接收函数执行的返回结果[也就是当前组件的virtualDOM对象]
+          +最后基于render把组件返回的虚拟DOM变为真实DOM，插入到#root容器中
       +属性props的处理
         #1 调用组件，传递进来的属性是'只读的',原理是：props对象被冻结了
           +获取：props.xxx
@@ -152,9 +152,17 @@ root.render(
               // 类型是字符串、必传
               title: PropTypes.string.isRequired,
               // 类型是数字
-              x:PropTypes.number
+              x:PropTypes.number，
+              // 多种校验规则中的一个
+              y: PropTypes.oneOffType([
+                PropTypes.number,
+                PropTypes.string
+              ])
             }
-            传递进来的属性，首先会经历规则校验，不管校验成功还是失败，最后都会把属性给props，如果不符合设定规则，控制台会抛出警告错误(不影响属性值的获取)
+          传递进来的属性，首先会经历规则校验，不管校验成功还是失败，最后都会把属性给props，如果不符合设定规则，控制台会抛出警告错误(不影响属性值的获取)
+          + 如果就想把传递的属性值进行修改，我们可以：
+            +把props中的某个属性值复制给其他内容[例如：变量、状态....]
+            +我们不直接操作props.xxx = xxx,但是我们可以修改变量/状态值!!
     @2 类组件
     @3 Hooks组件：在函数组件中使用React Hooks函数
 

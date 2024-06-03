@@ -8,14 +8,17 @@ const DemoOne = function (props) {
   </div>
 }
 // 通过函数当作对象，设置静态的私有属性方法[把函数当作对象]，来给其设置属性的校验规则
-
 DemoOne.defaultProps = {
   x:0
 }
 
 DemoOne.propTypes = {
   title: PropTypes.string.isRequired,
-  x:PropTypes.number
+  x:PropTypes.number,
+  y: PropTypes.oneOffType([
+    PropTypes.number,
+    PropTypes.string
+  ])
 }
 
 export default DemoOne
