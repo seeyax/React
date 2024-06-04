@@ -20,10 +20,11 @@ const Dialog = function (props) {
         <div className="title">{title}</div>
         <div className="content">{content}</div>
       </div>
-      <div className="footer">
+      {children.length > 0 ?<div className="footer">
         {sureSlot}
         {cancelSlot}
-      </div>
+      </div>: null}
+      
     </div>
 
   </div>

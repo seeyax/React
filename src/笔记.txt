@@ -163,6 +163,22 @@ root.render(
           + 如果就想把传递的属性值进行修改，我们可以：
             +把props中的某个属性值复制给其他内容[例如：变量、状态....]
             +我们不直接操作props.xxx = xxx,但是我们可以修改变量/状态值!!
+      特点：
+        函数组件是静态组件
+          第一次渲染组件，把函数执行
+            + 产生一个私有的上下文
+            + 把解析出来的props[含children]传递进来[但是被冻结了]
+            + 对函数返回的JSX元素[virtualDOM]进行渲染
+          当我们点击按钮的时候，会把绑定的小函数执行：
+            +修改上级上下文中的变量
+            +私有变量值发生了改变
+            +但是视图不会更新
+          =>也就是，函数组件第一次渲染完毕后，组件中的内容，不会根据组件内的某些操作，再进行更新，所以称他为静态组件
+          =>除非在父组件中，重新调用这个函数组件[可以传递不同的属性信息]
+
+      动态组件[方法]：
+        +类组件
+        +Hooks组件(在函数组件中，使用Hooks函数)
     @2 类组件
     @3 Hooks组件：在函数组件中使用React Hooks函数
 
@@ -172,6 +188,19 @@ root.render(
     作用：和属性一样，都是想办法让组件具备更强的复用性
     +传递数据值用属性
     +传递HTML结构，用插槽
+  
+  import React,{ Component, PureComponent } from 'react'
+    +基于ES6Module模块规范导入
+  import React...
+    +把基于export default到处的内容获取到
+  import { Component, PureComponent } from 'react'
+    +不是对React对象做解构赋值，而是把基于export function Component(){} 一个个导出的内容，做解析赋值
+
+  创建类组件
+    创建一个构造函数(类)
+      + 要求必须继承React.Component/PureComponent这个类
+      + 我们习惯于使用ES6中的class创建类
+      + 必须给当前类设置一个render的方法[放在其原型上]:在render方法中，返回需要渲染的视图
 
  
 

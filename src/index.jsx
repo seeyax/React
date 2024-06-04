@@ -6,7 +6,8 @@ import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/stable'
 import DemoOne from './views/components/DemoOne';
 import Dialog from './views/components/Dialog';
-
+import Vote from './views/components/Vote'
+import NewVote from './views/components/NewVotes'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -24,6 +25,14 @@ root.render(
       <button slot="sure">确定</button>
       <button slot="cancel">取消</button>
     </Dialog>
+    <br />
+    <br />
+    <br />
+    <Vote title="react还是很好学的"></Vote>
+    <br />
+    <br />
+    <br />
+    <NewVote></NewVote>
   </div>
 )
 
