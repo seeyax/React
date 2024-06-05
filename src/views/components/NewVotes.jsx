@@ -34,4 +34,29 @@ class NewVotes extends React.Component {
   }
 }
 
+class Parent {
+  // new的时候，执行的构造函数[可写可不写：需要接收传递进来的实参信息，才需要设置constructor]
+  constructor (x,y) {
+    // this ->创建的实例
+    console.log(x, y);
+    // total 是私有属性
+    this.total = x + y
+    // 私有属性
+    this.getNum = function () {}
+  }
+  num = 200; //等价于this.num = 2000 给实例设置私有属性
+  sum1 =  () => {} // 这是加私有属性
+  sum2 () {
+    // 类似于sum = function sum() {} 不是箭头函数
+    // 它是给parent.prototype上设置公共的方法[sum2函数是不可枚举的]
+  }
+  // 把构造函数当做一个普通对象，为其设置静态的私有属性方法 Parent.xxx 也是不可枚举的
+  static average () {
+
+  }
+}
+Parent.prototype.y = 2000 // 在外部手动给构造函数原生上设置公共的属性
+let p = new Parent(10,20)
+console.log(p);
+
 export default NewVotes
