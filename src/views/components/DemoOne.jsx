@@ -2,8 +2,9 @@ import PropTypes from 'prop-types'
 import React from 'react'
 console.log(React)
 const DemoOne = function (props) {
+  console.log(props)
   // console.log(Object.isFrozen(props)) ==>true
-  let { className, style, title, x, children } = props
+  let { style, title, x, children } = props
   // 要对children的类型做处理
   // if (children === undefined) {
   //   children = []
@@ -19,7 +20,6 @@ const DemoOne = function (props) {
   let headerSlot = [], footSlot = [], defaultSlot = []
   children.forEach(child => {
     // 传递进来的插槽信息，都是编译为virtualDOM后传递进来的[而不是传递的标签]
-    console.log(child)
     let { slot } = child.props
     if(slot === 'header') {
       headerSlot.push(child)
@@ -29,7 +29,8 @@ const DemoOne = function (props) {
       defaultSlot.push(child)
     }
   })
-  return <div className={`demo-box ${className}`}>
+  // className={`demo-box ${className}`
+  return <div className='demo-box'>
     <h2 style={style}>{title}</h2>
     {headerSlot}
     <br />

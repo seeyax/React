@@ -6,10 +6,17 @@
  * 
  */
 
+/** 从调用类组件[new NewVotes({...})]开始，类组件内部发生的事情：
+ *    1. 初始化属性 & 规则校验
+ * 
+ */
 import React from 'react'
 let supNum = 10, oppNum = 5
 class NewVotes extends React.Component {
-  
+  constructor (props) {
+    super(props)
+    console.log(props);
+  }
   render () {
     return <div className="vote-box">
     <div className="header">
