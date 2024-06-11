@@ -4,16 +4,16 @@ import ReactDOM from 'react-dom/client';
 import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/stable'
-import DemoOne from './views/components/DemoOne';
-import Dialog from './views/components/Dialog';
-import Vote from './views/components/Vote'
+// import DemoOne from './views/components/DemoOne';
+// import Dialog from './views/components/Dialog';
+// import Vote from './views/components/Vote'
 import NewVote from './views/components/NewVotes'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <div>
-    <DemoOne title="title - react" x={10} className='box' style={{fontSize:'22px', color:'red'}}>
+    {/* <DemoOne title="title - react" x={10} className='box' style={{fontSize:'22px', color:'red'}}>
       <span slot="footer">我是页脚</span>
       <span slot="header">我是页眉</span>
     </DemoOne>
@@ -24,15 +24,15 @@ root.render(
     <Dialog content="我们一定要好好学习React!!">
       <button slot="sure">确定</button>
       <button slot="cancel">取消</button>
-    </Dialog>
+    </Dialog> */}
     <br />
     <br />
     <br />
-    <Vote title="react还是很好学的"></Vote>
+    {/* <Vote title="react还是很好学的"></Vote> */}
     <br />
     <br />
     <br />
-    <NewVote></NewVote>
+    <NewVote title="珠峰React"></NewVote>
   </div>
 )
 
