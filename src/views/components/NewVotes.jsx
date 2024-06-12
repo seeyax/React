@@ -46,6 +46,30 @@
       ４.触发render周期函数：渲染
       5.触发componentDidMount周期函数: 第一次渲染完毕
         + 已经把virtualDOM变为真实DOM了[所以我们可以获取真实DOM了]
+
+    组件更新的逻辑[当修改了相关状态,组件会更新]
+      1.触发shouldComponentUpdate()周期函数:是否允许更新
+        shouldComponentUpdate(nextProps, nextState) {
+        // console.log(this); // this是当前实例
+        // nextState: 存储要修改的最新状态
+        // this.state: 存储的还是修改前的状态[此时状态还没有改变]
+        console.log(this.state, nextState);
+        // 此周期函数需要返回true/false
+        // 返回true: 允许更新,会继续执行下一步操作
+        // 返回false: 不允许更新,接下来啥都不处理
+        return true
+      }
+      2.触发 componentWillUpdate周期函数：更新之前
+        + 此周期函数也是不安全的
+        + 在这个阶段，状态还没有被修改
+      3.修改状态值/属性值[让this.state.xxx改为最新的值]
+      4.触发render 周期函数：组件更新
+        + 按照最新的状态/属性，把返回的JSX编译喂virtualDOM
+        + 和上一次渲染出来的virtualDOM进行对比[DOM-DIFF]
+        + 把差异的部分进行渲染[渲染为真实的DOM]
+      5.触发 componentDidUpdate 周期函数：组件更新完毕
+      特殊说明：如果我们是基于this.forceUpdate() 强制更新视图，会跳过shouldCOmponentUpdate周期函数
+               的校验，直接从componentWillUpdate开始进行更新[也就是：视图一定会更新]
  * 
  */
 import React from 'react'
@@ -101,6 +125,30 @@ class NewVotes extends React.Component {
 
   componentDidMount() {
     console.log('第一次渲染完毕');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // console.log(this); // this是当前实例
+    // nextState: 存储要修改的最新状态
+    // this.state: 存储的还是修改前的状态[此时状态还没有改变]
+    console.log(this.state, nextState);
+    // 此周期函数需要返回true/false
+    // 返回true: 允许更新,会继续执行下一步操作
+    // 返回false: 不允许更新,接下来啥都不处理
+    return true
+  }
+
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
+    console.log(this.state, nextState)
+  }
+  
+  componentDidUpdate() {
+    console.log('组件更新完毕');
+    console.log(this.state);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    
   }
 }
 

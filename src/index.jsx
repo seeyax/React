@@ -32,6 +32,14 @@ root.render(
     <br />
     <br />
     <br />
+    {/* 
+      深度优先原则：父组件在操作中，遇到子组件，一定是把子组件处理完，父组件才能继续处理
+        父组件的第一次渲染：
+          父willMount -> 父render[子willMount -> 子render -> 子didMount] -> 父didMount
+        父组件更新：
+          父shouldUpdate -> 父willUpdate -> 父render[子shouldUpdate -> 子willUpdate -> 子render -> 子didUpdate] ->父didUpdate
+    
+    */}
     <NewVote title="珠峰React"></NewVote>
   </div>
 )
