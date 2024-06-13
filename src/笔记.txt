@@ -290,7 +290,7 @@ root.render(
       ４.触发render周期函数：渲染
       5.触发componentDidMount周期函数: 第一次渲染完毕
         + 已经把virtualDOM变为真实DOM了[所以我们可以获取真实DOM了]
-    组件更新的逻辑[当修改了相关状态,组件会更新]
+    组件更新的逻辑[第一种：组件内的状态被修改,组件会更新]
       1.触发shouldComponentUpdate()周期函数:是否允许更新
         shouldComponentUpdate(nextProps, nextState) {
         // console.log(this); // this是当前实例
@@ -304,7 +304,7 @@ root.render(
       }
       2.触发 componentWillUpdate周期函数：更新之前
         + 此周期函数也是不安全的
-        + 在这个阶段，状态还没有被修改
+        + 在这个阶段，状态/属性还没有被修改
       3.修改状态值/属性值[让this.state.xxx改为最新的值]
       4.触发render 周期函数：组件更新
         + 按照最新的状态/属性，把返回的JSX编译喂virtualDOM
@@ -313,6 +313,34 @@ root.render(
       5.触发 componentDidUpdate 周期函数：组件更新完毕
       特殊说明：如果我们是基于this.forceUpdate() 强制更新视图，会跳过shouldCOmponentUpdate周期函数
                的校验，直接从componentWillUpdate开始进行更新[也就是：视图一定会更新]
+    组件更新的逻辑[第二种：父组件更新，触发的子组件更新] 
+      1. 触发componentWillReceiveProps 周期函数：接收最新属性之前
+        + 周期函数是不安全的
+        componentWillReceiveProps(nextProps) {
+          // this.props:存储的之前的属性
+          // nextProps: 传递进来的最新属性值
+          console.log('componentWillReceiveProps',this.props, nextProps);
+        }
+      2.触发 shouldComponentUpdate 周期函数
+      3.触发 componentWillUpdate周期函数
+      4.修改状态值/属性值[让this.state.xxx改为最新的值]
+      5.触发render 周期函数：组件更新
+      6.触发 componentDidUpdate 周期函数：组件更新完毕
+
+
+  父子组件嵌套，处理机制上遵循深度优先原则：父组件在操作中，遇到子组件，一定是把子组件处理完，父组件才能继续处理
+    父组件的第一次渲染：
+      父willMount -> 父render[子willMount -> 子render -> 子didMount] -> 父didMount
+    父组件更新：
+      父shouldUpdate -> 父willUpdate -> 父render[子WillReceiveProps -> 子shouldUpdate -> 子willUpdate -> 子render -> 子didUpdate] ->父didUpdate
+    父组件销毁：
+      父willUnmount -> 处理中[子willUnmount -> 子销毁] -> 父销毁
+
+
+  组件卸载的逻辑
+    1.触发 componentWillUnmount周期函数： 组件销毁之前
+    2.销毁
+
 
   render函数在渲染的时候, 如果type是：
     + 字符串：创建一个标签
@@ -321,6 +349,16 @@ root.render(
       + 每调用一次类组件都会创建一个单独的实例
       + 把在类组件中编写的render函数执行，把返回的jsx[virtualDOM]当作组件的视图进行渲染
 
+  函数组件是"静态组件":
+    + 组件第一次渲染完毕后，无法基于"内部的某些操作"让组件更新[无法实现'自更新']；但是，如果调用它的父组件更新了，那么
+      相关的子组件也一定会更新[可能传递最新的属性值进来]
+    + 函数组件具备：属性……[其他状态内容几乎没有]
+    + 优势：比类组件处理的机制简单，这样导致函数组件渲染速度更快
+  类组件是"动态组件"：
+    + 组件在第一次渲染完毕后，除了父组件更新可以触发其更新，我们可以通过this.setState修改状态，或者this.forceUpdate等方式，
+      让组件实现'自更新'
+    + 类组件具备：属性、状态、周期函数、ref……[几乎组件应该有的东西它都是具备的]
+    + 优势：功能强大
  
 
 

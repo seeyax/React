@@ -83,6 +83,7 @@ class NewVotes extends React.Component {
     title: PropTypes.string.isRequired,
     num: PropTypes.number
   }
+  // eslint-disable-next-line no-useless-constructor
   constructor (props) {
     super(props)
     // console.log(this.props)
@@ -93,7 +94,7 @@ class NewVotes extends React.Component {
     oppNum: 5
   }
   render () {
-    console.log(this.props)
+    console.log('render: ',this.props)
     let { title } = this.props,
     { supNum, oppNum } = this.state
     return <div className="vote-box">
@@ -112,6 +113,7 @@ class NewVotes extends React.Component {
         })
       }}>支持</button>
       <button onClick={()=>{
+        // eslint-disable-next-line react/no-direct-mutation-state
         this.state.oppNum++
         this.forceUpdate()
       }}>反对</button>
@@ -119,19 +121,19 @@ class NewVotes extends React.Component {
   </div>
   }
 
-  componentWillMount() {
-    console.log('第一次渲染之前')
+  UNSAFE_componentWillMount() {
+    // console.log('第一次渲染之前')
   }
 
   componentDidMount() {
-    console.log('第一次渲染完毕');
+    // console.log('第一次渲染完毕');
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     // console.log(this); // this是当前实例
     // nextState: 存储要修改的最新状态
     // this.state: 存储的还是修改前的状态[此时状态还没有改变]
-    console.log(this.state, nextState);
+    console.log('shouldComponentUpdate:',this.state, nextState);
     // 此周期函数需要返回true/false
     // 返回true: 允许更新,会继续执行下一步操作
     // 返回false: 不允许更新,接下来啥都不处理
@@ -139,17 +141,22 @@ class NewVotes extends React.Component {
   }
 
   UNSAFE_componentWillUpdate(nextProps, nextState) {
-    console.log(this.state, nextState)
+    console.log('UNSAFE_componentWillUpdate: ',this.props, nextProps)
   }
   
   componentDidUpdate() {
-    console.log('组件更新完毕');
-    console.log(this.state);
+    console.log('componentDidUpdate: 组件更新完毕');
+    // console.log(this.state);
   }
 
-  componentWillReceiveProps(nextProps) {
-    
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', this.props, nextProps);
   }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount: 组件销毁之前');
+  }
+  
 }
 
 class Parent {

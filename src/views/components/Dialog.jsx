@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+// 函数组件
 const Dialog = function (props) {
   let { title,content,children} = props
   children = React.Children.toArray(children)

@@ -25,13 +25,8 @@ root.render(
       <button slot="sure">确定</button>
       <button slot="cancel">取消</button>
     </Dialog> */}
-    <br />
-    <br />
-    <br />
+
     {/* <Vote title="react还是很好学的"></Vote> */}
-    <br />
-    <br />
-    <br />
     {/* 
       深度优先原则：父组件在操作中，遇到子组件，一定是把子组件处理完，父组件才能继续处理
         父组件的第一次渲染：
@@ -43,6 +38,13 @@ root.render(
     <NewVote title="珠峰React"></NewVote>
   </div>
 )
+setTimeout(() => {
+  root.render(
+    <div>
+      <NewVote title="componentWillReceiveProps"></NewVote>
+    </div>
+  )
+}, 5000);
 
 /** render函数在渲染的时候, 如果type是：
  *  + 字符串：创建一个标签
