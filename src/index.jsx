@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom/client';
 import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/stable'
-// import DemoOne from './views/components/DemoOne';
+// import DemoOne from './views/DemoOne';
 // import Dialog from './views/components/Dialog';
-// import Vote from './views/components/Vote'
-import NewVote from './views/components/NewVotes'
+// import Vote from './views/Vote'
+import NewVote from './views/NewVotes'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
