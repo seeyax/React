@@ -8,7 +8,7 @@ import 'react-app-polyfill/stable'
 // import Dialog from './views/components/Dialog';
 // import Vote from './views/Vote'
 // import NewVote from './views/NewVotes'
-import Demo from './views/Demo2'
+import Demo from './views/Demo4'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
