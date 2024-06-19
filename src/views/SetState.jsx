@@ -1,6 +1,7 @@
 
 import React from 'react'
-
+import { flushSync } from 'react-dom'
+// flushSync: 可以刷新updater更新队列,也就是让修改状态的任务立即批处理一次
 class Demo extends React.Component {
 
   state = {
@@ -8,29 +9,42 @@ class Demo extends React.Component {
     y: 5,
     z: 0
   }
-  handle = () =>{
-    // 箭头函数中的this->实例[宿主环境]
-    let { x, y, z } = this.state
-    // this.setState({
-    //   x: 100
-    // }, () => {
-    //   console.log(this.state);
-    //   console.log('更新完毕x');
-    // })
-    // 同时修改3个状态值，只会触发一次视图更新
-    // this.setState({
-    //   x: x + 1,
-    //   y: y + 1,
-    //   z: z + 1
-    // })
-    this.setState({ x: x + 1})
-    this.setState({ y: y + 1})
-    console.log(this.state) // {x: 10, y: 5, z: 0} ->render->didUpdate
+  // handle = () =>{
+  //   // 箭头函数中的this->实例[宿主环境]
+  //   let { x, y, z } = this.state
+  //   // this.setState({
+  //   //   x: 100
+  //   // }, () => {
+  //   //   console.log(this.state);
+  //   //   console.log('更新完毕x');
+  //   // })
+  //   // 同时修改3个状态值，只会触发一次视图更新
+  //   // this.setState({
+  //   //   x: x + 1,
+  //   //   y: y + 1,
+  //   //   z: z + 1
+  //   // })
+  //   this.setState({ x: x + 1})
+  //   this.setState({ y: y + 1})
+  //   console.log(this.state) // {x: 10, y: 5, z: 0} ->render->didUpdate
     
-    setTimeout(() => {
-      this.setState({ z: z + 1})
-      console.log(this.state); // {x: 11, y: 6, z: 0} ->render->didUpdate
-    },1000)
+  //   setTimeout(() => {
+  //     this.setState({ z: z + 1})
+  //     console.log(this.state); // {x: 11, y: 6, z: 0} ->render->didUpdate
+  //   },1000)
+  // }
+
+  handle = () => {
+    let { x, y } = this.state
+    this.setState ({ x: x + 1})
+    console.log(this.state); //{x: 10, y: 5, z: 0}
+    flushSync(() => {
+      this.setState ({ y: y + 1})
+      console.log(this.state); //{x: 10, y: 5, z: 0}
+    })
+    console.log(this.state); // {x: 11, y: 6, z: 0}
+    // 在修改z之前，要保证x/y都已经更改和让视图更新了
+    this.setState({z: this.state.x + this.state.y})
   }
   render() {
     console.log('视图渲染： render');
