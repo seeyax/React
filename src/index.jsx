@@ -8,7 +8,7 @@ import 'react-app-polyfill/stable'
 // import Dialog from './views/components/Dialog';
 // import Vote from './views/Vote'
 // import NewVote from './views/NewVotes'
-import Demo from './views/hechengshijiandedichengyuanli'
+import Demo from './views/10.hechengshijiandedichengyuanli'
 import './index.less'
 
 
