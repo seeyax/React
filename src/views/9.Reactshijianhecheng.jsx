@@ -120,3 +120,20 @@ export default Demo
 
 
  */
+
+
+  /**
+   * 移动端和PC端
+      + 移动端的click会存在300ms的延迟
+      原因：
+        + 移动端的click是单击事件
+        + PC端的click是点击事件
+      点击事件：第一次点击后，检测300ms,看是否有第二次点击操作，如果没有就是单机，如果有就是双击
+    连着点击两下：
+      + 移动端：不会触发click，只会触发dblclick
+      + PC端：会触发2次click，一次dblclick
+    单手指事件模型：touch
+      + touchstart
+      + touchmove
+      + touchend
+   */
