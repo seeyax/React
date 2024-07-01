@@ -8,8 +8,13 @@ import 'react-app-polyfill/stable'
 // import Dialog from './views/components/Dialog';
 // import Vote from './views/Vote'
 // import NewVote from './views/NewVotes'
-import Demo from './views/12.MobileEndofReactFunction'
+import Demo from './views/13.useState'
 // import './index.less'
+
+// 使用ANTD组件库
+import { ConfigProvider } from 'antd'
+
+import zhCN from 'antd/locale/zh_CN'
 
 // 使用FastClick解决了移动端使用click事件的300ms延迟问题
 import FastClick from 'fastclick'
@@ -18,9 +23,9 @@ FastClick.attach(document.body)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
+  <ConfigProvider locale={zhCN}>
   <Demo></Demo>
-  </>
+  </ConfigProvider>
 )
 
 
