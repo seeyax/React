@@ -6,10 +6,10 @@ import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/stable'
 // import DemoOne from './views/DemoOne';
 // import Dialog from './views/components/Dialog';
-// import Vote from './views/Vote'
+// import Vote from './views/VoteFunction'
 // import NewVote from './views/NewVotes'
-import Demo from './views/13.useState'
-// import './index.less'
+import Demo from './views/14.useStateExecutionOrder'
+import './index.less'
 
 // 使用ANTD组件库
 import { ConfigProvider } from 'antd'
