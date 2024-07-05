@@ -24,7 +24,7 @@ FastClick.attach(document.body)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ConfigProvider locale={zhCN}>
-  <Demo></Demo>
+  <Demo x={10} y={20}></Demo>
   </ConfigProvider>
 )
 
