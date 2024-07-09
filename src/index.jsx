@@ -8,7 +8,7 @@ import 'react-app-polyfill/stable'
 // import Dialog from './views/components/Dialog';
 // import Vote from './views/VoteFunction'
 // import NewVote from './views/NewVotes'
-import Demo from './views/15.useState函数更新和优化机制'
+import Demo from './views/16.useEffect的基础知识和底层机制'
 import './index.less'
 
 // 使用ANTD组件库
