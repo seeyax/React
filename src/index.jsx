@@ -8,7 +8,7 @@ import 'react-app-polyfill/stable'
 // import Dialog from './views/components/Dialog';
 // import Vote from './views/VoteFunction'
 // import NewVote from './views/NewVotes'
-import Demo from './views/17.useLayoutEffect和useEffect的细节'
+import Demo from './views/19.useImperativeHandle'
 import './index.less'
 
 // 使用ANTD组件库
