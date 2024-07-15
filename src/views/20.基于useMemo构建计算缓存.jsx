@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { Button } from 'antd'
 import './useState.less'
 
-const Demo = function () {
+const Demo = function  Demo() {
   let [supNum, setSupNum] = useState(10)
   let [oppNum, setOppNum] = useState(5)
   let [x, setX] = useState(0)

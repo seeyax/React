@@ -8,7 +8,7 @@ import 'react-app-polyfill/stable'
 // import Dialog from './views/components/Dialog';
 // import Vote from './views/VoteFunction'
 // import NewVote from './views/NewVotes'
-import Demo from './views/20.基于useMemo构建计算缓存'
+import Demo from './views/21.基于useCallback缓存函数引用'
 import './index.less'
 
 // 使用ANTD组件库
