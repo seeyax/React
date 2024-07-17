@@ -8,7 +8,7 @@ import 'react-app-polyfill/stable'
 // import Dialog from './views/components/Dialog';
 // import Vote from './views/VoteFunction'
 // import NewVote from './views/NewVotes'
-import Demo from './views/22.基于自定义Hook提取公共逻辑'
+import Demo from './views/Vote'
 import './index.less'
 
 // 使用ANTD组件库
