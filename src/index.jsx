@@ -18,13 +18,20 @@ import zhCN from 'antd/locale/zh_CN'
 
 // 使用FastClick解决了移动端使用click事件的300ms延迟问题
 import FastClick from 'fastclick'
-FastClick.attach(document.body)
+// redux
+import store from './store/index'
 
+// 基于上下文对象中的Provider，把创建的store放在祖先的上下文中！！
+import ThemeContext from './ThemeContext';
+
+FastClick.attach(document.body)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ConfigProvider locale={zhCN}>
-  <Demo x={10} y={20}></Demo>
+    <ThemeContext.Provider value={{store}}>
+      <Demo></Demo>
+    </ThemeContext.Provider>
   </ConfigProvider>
 )
 
