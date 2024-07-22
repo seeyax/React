@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState, useEffect } from 'react'
 import VoteFooter from './VoteFooter'
 import VoteMain from './VoteMain'
 import '../index.less'
@@ -8,7 +8,24 @@ const Vote = function Vote () {
   const { store } = useContext(ThemeContext)
 
   // 获取容器中的公共状态
-  let { supNum, oppNum } = store.getStore()
+  let { supNum, oppNum } = store.getState()
+
+  // 组件第一次渲染完毕后，把让组件更新的方法,放在store的事件池中
+  let [num, setNum] = useState(0)
+  const update = () => {
+    setNum(num + 1)
+  }
+  // 每一次组件更新，都把最新创建的update放入事件池中，保证update的上级上下文是最新的闭包[num是最新的状态信息]
+  useEffect(() => {
+    // let unsubscribe = store.subscribe（让组件更新的方法）
+    //  + 把让组件更新的方法放在STORE的事件池中
+    //  + 返回的unsubscribe方法执行，可以把刚才放入事件池中的方法移除掉
+    let unsubscribe = store.subscribe(update)
+    // 在上一次组件释放的时候，把上一次放在事件池中的方法移除掉
+    return () => {
+      unsubscribe()
+    }
+  },[num])
   
   return <div className="vote-box">
     <div className="header">
@@ -69,4 +86,16 @@ export default Vote
  * 2.修改公共容器中的状态，不能直接修改
  *  + 基于dispatch派发，通知reducer执行
  *  + 在reducer中去实现状态的更新
+ */
+
+/**
+ * 总结：
+ * redux具体的代码编写顺序
+ *  1.创建store，规划出reducer[当中的业务处理逻辑可以后续不断完善，但是最开始reducer这个架子需要先搭建起来]
+ *  2.在入口中，基于上下文对象，把store放入倒上下文中，需要用到的store的组件，从上下文中获取
+ *  3.在组件基于store，完成公共状态的获取和任务的派发
+ *    + 使用到公共状态的组件，必须像store的事件池中加入让组件更新的办法，只要这样，才可以确保公共状态改变，可以让组件更新，
+ *      才可以获取最新的状态进行绑定
+ * 
+ * 
  */

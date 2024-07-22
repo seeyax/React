@@ -25,7 +25,7 @@ const reducer = function reducer(state = initial, action) {
     case 'VOTE_SUP':
       state.supNum++
       break;
-    case 'vote_OPP':
+    case 'VOTE_OPP':
       state.oppNum++
       break;
     default:
