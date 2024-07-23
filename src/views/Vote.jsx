@@ -1,4 +1,4 @@
-import React, { useContext,useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import VoteFooter from './VoteFooter'
 import VoteMain from './VoteMain'
 import '../index.less'
@@ -86,7 +86,7 @@ export default Vote
  * 2.修改公共容器中的状态，不能直接修改
  *  + 基于dispatch派发，通知reducer执行
  *  + 在reducer中去实现状态的更新
- */
+ */ 
 
 /**
  * 总结：

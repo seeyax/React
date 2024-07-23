@@ -10,6 +10,7 @@ let initial = {
   oppNum: 5
 }
 /**
+ * 每一次dispatch派发，都会把reducer执行
  * 第一次派发，state没有值，会把initial的值赋值给state，第一次派发实是redux内部派发的
  *  目的：给state赋初始值
  * 第二次，是我们基于业务逻辑，实现的手动派发
@@ -34,7 +35,7 @@ const reducer = function reducer(state = initial, action) {
   return state
 }
 
-
+// 创建store公共容器
 const store = createStore(reducer)
 
 export default store
