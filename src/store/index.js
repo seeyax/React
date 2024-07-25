@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
 import '../assets/images/dispatch派发跟reducer的关系.png'
+import * as TYPES from './action-type'
 /**
  * 管理员：修改store容器中的公共状态
  * 
@@ -23,10 +24,10 @@ const reducer = function reducer(state = initial, action) {
 
   //接下来我们要基于派发的行为标识，修改store容器中的公共状态信息
   switch (action.type) {
-    case 'VOTE_SUP':
+    case TYPES.VOTE_SUP:
       state.supNum++
       break;
-    case 'VOTE_OPP':
+    case TYPES.VOTE_OPP:
       state.oppNum++
       break;
     default:
