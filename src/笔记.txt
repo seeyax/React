@@ -450,6 +450,28 @@ root.render(
     而且，也不需要我们手动把让组件更新的方法，放在事件池中，react-redux内部帮我们处理了
 
 
+  redux工程化处理：
+    1.把reducer状态按照模块进行划分和管理；把所有模块的reducer合并为一个即可！！
+    2.每一次任务派发，都会把所有模块的reducer，依次去执行，派发时传递的行为对象（行为标识）是统一的，所以我们要保证
+      各个模块之间，派发的行为标识他的唯一性 ===> 派发行为标识的统一管理
+    3.创建actionCreator对象，按模块管理我们需要派发的行为对象
+  在组件中使用的时候：
+    如果使用的是redux:
+    1.我们需要创建上下文对象，基于其Provider把创建的store放在根组件的上下文信息中；后代组件需要基于上下文对象，获取
+      到上下文中的store
+    2.需要用到公共状态的组件
+      + store.getState()获取公共状态
+      + store.subscribe(让组件更新的函数)放在事件池中
+    3.需要派发的组件
+      + store.dispatch(actionCreator)
+
+  react-redux就是帮助我们简化redux在组件中的应用
+    1.提供的Provider组件，可以自己在内部创建上下文对象，把store放在根组件的上下文中
+    2.提供的connect函数，在函数内部，可以获取上下文中的store，快速的把公共状态，以及需要派发的操作，基于属性传递给组件
+      connect(mapStateToProps, mapDispatchToProps)(渲染的组件)
+
+
+
 
 
 
