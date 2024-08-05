@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- hash路由 -->
+  <nav class="nav-box">
+    <a href="#/">首页</a>
+    <a href="#/poduct">产品中心</a>
+    <a href="#/personal">个人中心</a>
+  </nav>
+  <div class="view-box"></div>
+</body>
+<script>
+  /**
+   * hash路由：
+   *  + 改变页面的哈希值（#/xxx),主页面不会刷新的
+   *  + 根据不同的哈希值，让容器中渲染不同的内容[组件]
+   *  + 路由匹配用：hash = location.hash.substring()
+   *  + 设置默认值 location.hash = '#/'
+   *  + 监听hash值得变化，重新进行路由匹配
+   *      + window.onhashchange = routerMatch
+  */
+
+ /**
+  * history路由(浏览器路由)
+  *  + (/xxx)
+  *  + 利用了H5的historyAPI来实现页面地址的切换[可以不刷新页面]
+  *  + 根据不同的地址，到路由表中进行匹配，让容器中渲染不同的内容[组件]
+  *  + history.pushState() 地址跳转 新增历史记录
+  *  + history.replaceState() 地址跳转 替换现有的记录
+  *  + 路由匹配用：path = location.pathname
+  *  + 设置默认值 history.pushState({},'','/')
+  *  + 监听地址变化：此事件:执行go/forward/back等方法可以触发，但是执行pushState和replaceState等方法无法触发
+  *     + window.onpopstate = routerMatch
+  * 
+ */
+</script>
+</html>
