@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/stable'
-import Demo from './views/Vote'
+import App from './App'
 import './index.less'
 import { Provider } from 'react-redux'
 
@@ -25,7 +25,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ConfigProvider locale={zhCN}>
     <Provider store={store}>
-      <Demo></Demo>
+      <App></App>
     </Provider>
   </ConfigProvider>
 )
