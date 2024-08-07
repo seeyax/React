@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link, Switch, Route, Redirect } from 'react-router-dom'
-import A1 from './a/A1'
-import A2 from './a/A2'
-import A3 from './a/A3'
+import { Link } from 'react-router-dom'
+import RouterView from '../router'
+import routes from '../router/routes'
 
 import styled from 'styled-components'
 
@@ -18,7 +17,16 @@ const DemoBox = styled.div`
     }
   }
 `
-
+const routersChildren = function routersChildren (routes) {
+  // eslint-disable-next-line array-callback-return
+  const children =  routes.find(item => {
+    const keys = Object.keys(item)
+    if(keys.includes('children')) {
+      return item
+    }
+  })
+  return children.children
+}
 const A = function A () {
   return <DemoBox>
     <div className="menu">
@@ -27,13 +35,7 @@ const A = function A () {
       <Link to='/a/a3'>A3</Link>
     </div>
     <div className="view">
-      {/* 配置二级路由的匹配规则：需要把一级路由地址带上，不能省略  */}
-      <Switch>
-        <Redirect exact from='/a' to="/a/a1"></Redirect>
-        <Route  path="/a/a1" component={A1}></Route>
-        <Route path="/a/a2" component={A2}></Route>
-        <Route path="/a/a3" component={A3}></Route>
-      </Switch>
+    <RouterView routes={routersChildren(routes)}></RouterView>
     </div>
   </DemoBox>
 }

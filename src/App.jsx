@@ -1,10 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { HashRouter, Route, Switch, Redirect, Link } from 'react-router-dom'
-
-import A from './views/A'
-import B from './views/B'
-import C from './views/C'
+import { HashRouter, Link } from 'react-router-dom'
+import RouterView from './router'
+import routes from './router/routes'
 
 import styled from 'styled-components'
 const NavBox = styled.nav`
@@ -23,13 +21,7 @@ const App = function App () {
     <Link to="/c">C</Link>
   </NavBox>
   <div className="content">
-    <Switch>
-      <Redirect exact from='/' to="/a"></Redirect>
-      <Route path="/a" component={A}></Route>
-      <Route path="/b" component={B}></Route>
-      <Route path="/c" component={C}></Route>
-      <Redirect to="/a"></Redirect>
-    </Switch>
+    <RouterView routes={routes}></RouterView>
   </div>
   </HashRouter>
 }
