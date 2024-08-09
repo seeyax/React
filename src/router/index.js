@@ -36,18 +36,3 @@ const RouterView = function RouterView(props) {
 
 export default RouterView
 
-
-/**
- * <Route path="/a" component={A}></Route>
- * 在react-router-dom v5中,基于React路由匹配渲染的组件,路由会默认给每个组件传递三个属性
- *  + history
- *  + location
- *  + match
- * 后期我们基于props/this.props获取传递的属性值
- * 
- * <Route path='/a' render={()=>{
- *  // 在render中可以获取传递的属性
- *  // 但是组件中没有这些属性,此时我们需要自己传递给组件
- * return <A {...props}></A>
- * }}
- */

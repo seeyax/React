@@ -64,7 +64,11 @@ const routes = [
     meta: {}
   },
   {
-    path: '/c',
+    // 每一次路由地址的匹配，都是基于path-to-regexp这个规则处理的
+    // ：就是设置动态规则  ？可传递也可以不传递
+    // 只有/c/100/zhufeng这样的地址才可以匹配
+    // path: '/c/:id?/:name?' 可以匹配的地址有很多
+    path: '/c/:id?/:name?',
     component: lazy(() => import('../views/C')),
     name: 'c',
     meta: {}
