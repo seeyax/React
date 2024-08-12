@@ -28,3 +28,15 @@ const C = function A () {
 }
 
 export default C
+
+
+/**
+ * 
+ * 在react-router-dom v6常用的路由Hook:
+ *  + useNavigate ->代替5中的useHistory，实现编程式导航
+ *  + useLocation[5中也有，获取location信息，pathname/search/state]
+ *  + useSearchParams[6有]，获取问号传参信息，取到的结果是一个URLSearchParams对象
+ *  + useParams[5/6], 获取路径参数匹配的信息
+ *  + useMacth，[6],代替6中的useRouteMatch[5中可以基于params获取路径参数信息，6中，需要我们自己传递地址，
+ *    而且params中也没有获取匹配的信息]
+ */
