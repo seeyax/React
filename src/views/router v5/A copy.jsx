@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link, Switch, Route, Redirect } from 'react-router-dom'
-import A1 from './a/A1'
-import A2 from './a/A2'
-import A3 from './a/A3'
+import A1 from '../a/A1'
+import A2 from '../a/A2'
+import A3 from '../a/A3'
 
 import styled from 'styled-components'
 

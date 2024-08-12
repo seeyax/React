@@ -12,7 +12,7 @@
  *  + children: [] 子路由
  * 
  */
-import A from '../views/A'
+import A from '../views/router v5/A'
 import A1 from '../views/a/A1'
 
 import { lazy } from 'react'
@@ -59,7 +59,7 @@ const routes = [
   },
   {
     path: '/b',
-    component: lazy(() => import('../views/B')),
+    component: lazy(() => import('../views/router v5/B')),
     name: 'b',
     meta: {}
   },
@@ -69,7 +69,7 @@ const routes = [
     // 只有/c/100/zhufeng这样的地址才可以匹配
     // path: '/c/:id?/:name?' 可以匹配的地址有很多
     path: '/c/:id?/:name?',
-    component: lazy(() => import('../views/C')),
+    component: lazy(() => import('../views/router v5/C')),
     name: 'c',
     meta: {}
   },
