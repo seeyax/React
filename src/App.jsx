@@ -37,7 +37,8 @@ const App = function App () {
           <Route path='/a/a3' element={<A3/>}></Route>
         </Route>
         <Route path="/b" element={<B/>}></Route>
-        <Route path="/c" element={<C/>}></Route>
+        {/* 路径传参:路径参数 */}
+        <Route path="/c:id?/:name?" element={<C/>}></Route>
         {/* 如果以上都不匹配，我们可以渲染404组件，也可以重定向到A组件[传递不同的问号参数信息] */}
         <Route path="*" element={<Navigate to={{
           pathname: '/a',
