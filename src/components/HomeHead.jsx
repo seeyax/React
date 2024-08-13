@@ -1,6 +1,7 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { withRouter } from '../router'
 
 const NavBox = styled.nav`
   a{
@@ -12,14 +13,13 @@ const NavBox = styled.nav`
     }
   }
 `
-class HomeHead extends React.Component {
-  render() {
-    return <NavBox>
-      <Link to="/a">A</Link>
-      <NavLink to="/b">B</NavLink>
-      <Link to="/c">C</Link>
-  </NavBox>
-  }
+const HomeHead = function HomeHead (props) {
+  console.log(props);// 也具备了路由信息
+  return <NavBox>
+    <Link to="/a">A</Link>
+    <Link to="/b">B</Link>
+    <Link to="/c">C</Link>
+</NavBox>
 }
 
-export default HomeHead
+export default withRouter(HomeHead)
